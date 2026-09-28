@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fluxo | Sua rotina de estudos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="settings.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">f</span>fluxo</a>
+      <nav>
+        <a class="nav-link active" data-page="dashboard" href="#today"><i data-lucide="sun-medium"></i> Hoje</a>
+        <a class="nav-link" data-page="availability" href="#availability"><i data-lucide="calendar-days"></i> Disponibilidade</a>
+        <a class="nav-link" data-page="goals" href="#goals"><i data-lucide="target"></i> Objetivos</a>
+        <a class="nav-link" data-page="history" href="#history"><i data-lucide="chart-no-axes-combined"></i> Histórico</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="quiet-button" id="activity-button"><i data-lucide="plus"></i> Registrar atividade</button>
+        <button class="profile" id="open-data-settings" aria-label="Abrir dados e configurações"><div class="avatar">AW</div><div><strong>Seus dados</strong><small>backup e Study Coach</small></div><i data-lucide="more-horizontal"></i></button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button class="mobile-menu" aria-label="Abrir menu"><i data-lucide="menu"></i></button>
+        <p id="today-label">HOJE</p>
+        <div class="top-actions"><button class="icon-button" aria-label="Notificações"><i data-lucide="bell"></i><span></span></button><button class="help"><i data-lucide="circle-help"></i></button></div>
+      </header>
+
+      <div id="dashboard-page"><section class="hero" id="today">
+        <div><p class="eyebrow">SEU FOCO DE HOJE</p><h1>Bom dia, Allan.<br /><em>Vamos no seu ritmo.</em></h1><p class="hero-copy" id="routine-summary">Carregando sua rotina...</p></div>
+        <div class="daily-ring"><svg viewBox="0 0 120 120"><circle class="ring-track" cx="60" cy="60" r="51"/><circle class="ring-value" cx="60" cy="60" r="51"/></svg><div><strong id="planned-total">0min</strong><span>planejados</span></div></div>
+      </section>
+
+      <section class="content-grid">
+        <div class="primary-column">
+          <div class="section-heading"><div><p class="eyebrow">AGORA</p><h2>Seu próximo passo</h2></div><button class="text-button" id="plan-button">ver plano do dia <i data-lucide="arrow-up-right"></i></button></div>
+          <article class="now-card">
+            <div class="session-flag" id="next-session-flag"><span></span> SEM SESSÕES PROGRAMADAS</div>
+            <div class="now-card-main"><div><h3 id="next-session-title">Seu ritmo, suas escolhas.</h3><p id="next-session-description">Configure objetivos e disponibilidade para receber uma sugestão de rotina.</p></div><div class="duration" id="next-session-duration"><i data-lucide="clock-3"></i> --</div></div>
+            <div class="session-meta"><span id="next-session-time"><i data-lucide="calendar-clock"></i> --</span><span><i data-lucide="brain"></i> Estudo planejado</span></div>
+            <button class="start-button" id="start-button">Iniciar sessão <i data-lucide="arrow-right"></i></button>
+          </article>
+
+          <div class="section-heading schedule-title"><div><p class="eyebrow">AGENDA DE HOJE</p><h2>Resto do seu dia</h2></div><button class="text-button" id="add-session"><i data-lucide="refresh-cw"></i> reorganizar dia</button></div>
+          <div class="session-list" id="session-list"></div>
+        </div>
+
+        <aside class="insights-column">
+          <section class="week-card"><div class="section-heading"><div><p class="eyebrow">ESTA SEMANA</p><h2>Ritmo consistente</h2></div><button class="round-button" data-open-page="history"><i data-lucide="chevron-right"></i></button></div><div class="week-stats"><div><strong id="week-days">0<small>/7</small></strong><span>dias estudados</span></div><div><strong id="week-rate">0<small>%</small></strong><span>conclusão</span></div></div><div class="week-bars"><div class="bar-day"><i></i><span>S</span></div><div class="bar-day"><i></i><span>T</span></div><div class="bar-day"><i></i><span>Q</span></div><div class="bar-day"><i></i><span>Q</span></div><div class="bar-day"><i></i><span>S</span></div><div class="bar-day"><i></i><span>S</span></div><div class="bar-day today"><i></i><span>D</span></div></div></section>
+          <section class="insight-card coach-card"><div class="section-heading"><div><p class="eyebrow">STUDY COACH</p><h2>Sua rotina em resumo</h2></div><button class="text-button" id="refresh-coach">Atualizar análise</button></div><div id="coach-content"><p>Atualize a análise para receber observações sobre seus dados de estudo.</p></div></section>
+          <section class="goals-mini"><div class="section-heading"><div><p class="eyebrow">OBJETIVOS</p><h2>Distribuição</h2></div><button class="round-button" data-open-page="goals"><i data-lucide="arrow-up-right"></i></button></div><div id="goals-mini-list"></div></section>
+        </aside>
+      </section></div>
+      <section class="settings-page" id="goals-page" hidden>
+        <div class="page-intro"><div><p class="eyebrow">SUA BASE DE ESTUDO</p><h1>Objetivos <em>com intenção.</em></h1><p>Defina seus focos, metas e o mapa leve de assuntos que quer desenvolver.</p></div><button class="finish-button" id="create-goal"><i data-lucide="plus"></i> Novo objetivo</button></div>
+        <div class="goal-cards" id="goal-cards"></div>
+      </section>
+      <section class="settings-page" id="availability-page" hidden>
+        <div class="page-intro"><div><p class="eyebrow">SUA JANELA DE FOCO</p><h1>Quando você pode <em>estudar?</em></h1><p>Adicione intervalos que representam sua disponibilidade habitual. Você poderá ajustar a rotina depois.</p></div><button class="finish-button" id="create-availability"><i data-lucide="plus"></i> Adicionar horário</button></div>
+        <div class="availability-grid" id="availability-list"></div>
+      </section>
+      <section class="settings-page" id="history-page" hidden><div class="page-intro"><div><p class="eyebrow">SEU CAMINHO</p><h1>Histórico de <em>estudo.</em></h1><p id="history-summary">Acompanhe o que foi realizado e o ritmo que você construiu.</p></div></div><section class="weekly-review"><div class="section-heading"><div><p class="eyebrow">REVISÃO SEMANAL</p><h2>Sua semana</h2></div><button class="finish-button" id="open-weekly-review">Registrar revisão</button></div><div class="goal-metrics" id="weekly-summary"></div><div id="weekly-breakdown"></div><div id="weekly-comparison"></div><div id="weekly-recommendation"></div></section><section class="weekly-review"><div class="section-heading"><div><p class="eyebrow">REVISÕES ANTERIORES</p><h2>Histórico semanal</h2></div></div><div class="goal-cards" id="weekly-reviews-list"></div></section><div class="goal-cards" id="history-list"></div></section>
+    </main>
+
+    <dialog id="timer-modal" class="modal timer-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><p class="eyebrow">CONCURSO · BANCO DE DADOS</p><h2>Normalização</h2><p class="timer-instruction">Concentre-se no conceito e faça anotações curtas. Ao final, resolva algumas questões.</p><div class="timer-display" id="timer">50:00</div><p class="timer-status"><span></span> em foco</p><p class="timer-started" id="timer-started"></p><div class="timer-actions"><button class="secondary-button" id="pause-button"><i data-lucide="pause"></i> Pausar</button><button class="finish-button" id="finish-button">Finalizar sessão <i data-lucide="check"></i></button></div></dialog>
+
+    <dialog id="finish-modal" class="modal finish-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><div class="modal-icon"><i data-lucide="party-popper"></i></div><p class="eyebrow">SESSÃO CONCLUÍDA</p><h2>Como foi seu estudo?</h2><form id="finish-form"><div class="form-row"><label>Tempo estudado<input id="studied-time" name="studied-time" type="number" value="50" min="0" /><span>min</span></label><label>Questões realizadas<input name="questions" type="number" placeholder="opcional" min="0" /></label><label>Questões acertadas<input name="correct" type="number" placeholder="opcional" min="0" /></label></div><fieldset><legend>Como foi?</legend><div class="difficulty"><button type="button" data-difficulty="EASY">Fácil</button><button type="button" class="selected" data-difficulty="NORMAL">Normal</button><button type="button" data-difficulty="HARD">Difícil</button></div></fieldset><label class="note-label">Observação<textarea name="note" placeholder="Algo que vale lembrar? (opcional)"></textarea></label><button class="finish-button full" type="submit">Salvar e concluir <i data-lucide="check"></i></button></form></dialog>
+
+    <dialog id="activity-modal" class="modal activity-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><p class="eyebrow">FORA DO PLANEJAMENTO</p><h2>Registrar atividade</h2><form id="activity-form"><label>Objetivo<select name="goalId"></select></label><label>O que você estudou?<input name="topic" required placeholder="Ex.: Docker, capítulo 3" /></label><label>Duração<input name="actualMinutes" required type="number" min="1" placeholder="Minutos" /></label><label>Questões<input name="questions" type="number" min="0" placeholder="Opcional" /></label><label>Acertos<input name="correct" type="number" min="0" placeholder="Opcional" /></label><button class="finish-button full" type="submit">Registrar atividade <i data-lucide="plus"></i></button></form></dialog>
+    <dialog id="goal-modal" class="modal goal-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><p class="eyebrow" id="goal-modal-label">NOVO OBJETIVO</p><h2 id="goal-modal-title">Seu novo foco</h2><form id="goal-form"><input type="hidden" name="id" /><div class="form-row two"><label>Nome<input name="name" required placeholder="Ex.: Certificação AWS" /></label><label>Prioridade<select name="priority"><option value="HIGH">Alta</option><option value="MEDIUM" selected>Média</option><option value="LOW">Baixa</option></select></label></div><label>Descrição<input name="description" placeholder="Opcional" /></label><div class="form-row two"><label>Meta ideal por dia<input name="ideal" type="number" min="1" required /><span>min</span></label><label>Meta mínima por dia<input name="minimum" type="number" min="1" required /><span>min</span></label></div><div id="goal-structure" hidden><div class="structure-heading"><strong>Áreas e tópicos</strong><button type="button" class="text-button" id="add-area"><i data-lucide="plus"></i> área</button></div><div id="areas-editor"></div></div><button class="finish-button full" type="submit">Salvar objetivo <i data-lucide="check"></i></button></form></dialog>
+    <dialog id="availability-modal" class="modal availability-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><p class="eyebrow">DISPONIBILIDADE</p><h2>Adicionar horário</h2><form id="availability-form"><input type="hidden" name="id" /><label>Dia da semana<select name="day"><option value="MONDAY">Segunda-feira</option><option value="TUESDAY">Terça-feira</option><option value="WEDNESDAY">Quarta-feira</option><option value="THURSDAY">Quinta-feira</option><option value="FRIDAY">Sexta-feira</option><option value="SATURDAY">Sábado</option><option value="SUNDAY">Domingo</option></select></label><div class="form-row two"><label>Início<input name="start" type="time" required /></label><label>Fim<input name="end" type="time" required /></label></div><button class="finish-button full" type="submit">Salvar horário <i data-lucide="check"></i></button></form></dialog>
+    <dialog id="weekly-review-modal" class="modal activity-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><p class="eyebrow">REVISÃO SEMANAL</p><h2>Como foi sua rotina?</h2><form id="weekly-review-form"><fieldset><legend>Como você sentiu sua rotina esta semana?</legend><div class="difficulty"><button type="button" data-feeling="TOO_LIGHT">Muito leve</button><button type="button" data-feeling="BALANCED">Equilibrada</button><button type="button" data-feeling="TOO_HEAVY">Muito pesada</button></div></fieldset><label class="note-label">Observação<textarea name="notes" placeholder="Opcional"></textarea></label><div class="form-row two"><label>Sessão preferida<input name="preferredSessionMinutes" type="number" min="1" placeholder="Minutos" /></label><label>Pausa preferida<input name="preferredBreakMinutes" type="number" min="0" placeholder="Minutos" /></label></div><label>Período preferido<select name="preferredStudyPeriod"><option value="FLEXIBLE">Flexível</option><option value="MORNING">Manhã</option><option value="AFTERNOON">Tarde</option><option value="EVENING">Noite</option></select></label><button class="finish-button full" type="submit">Salvar revisão <i data-lucide="check"></i></button></form></dialog>
+    <dialog id="onboarding-modal" class="modal onboarding-modal"><p class="eyebrow" id="onboarding-step">PASSO 1 DE 4</p><h2 id="onboarding-title">Vamos configurar seus estudos</h2><p id="onboarding-copy">Primeiro vamos definir o que você quer estudar.</p><form id="onboarding-form"><section data-onboarding-panel="1"><label>Nome do objetivo<input name="name" required placeholder="Ex.: Concurso - Analista de Sistemas" /></label><label>Prioridade<select name="priority"><option value="HIGH">Alta</option><option value="MEDIUM" selected>Média</option><option value="LOW">Baixa</option></select></label></section><section data-onboarding-panel="2" hidden><label>Meta mínima por dia<input name="minimum" required type="number" min="1" placeholder="45" /><span>min</span></label><p class="field-help">A meta mínima representa o menor tempo que você gostaria de manter nos dias difíceis.</p><label>Meta ideal por dia<input name="ideal" required type="number" min="1" placeholder="150" /><span>min</span></label><p class="field-help">A meta ideal representa o tempo que você gostaria de estudar em um dia normal.</p></section><section data-onboarding-panel="3" hidden><p class="field-help">Selecione os dias e defina pelo menos um intervalo. Você pode adicionar mais horários depois.</p><div class="onboarding-availability" id="onboarding-availability"></div></section><section data-onboarding-panel="4" hidden><div class="onboarding-summary" id="onboarding-summary"></div></section><div class="onboarding-actions"><button class="secondary-button" type="button" id="onboarding-back" hidden>Voltar</button><button class="finish-button" type="submit" id="onboarding-next">Continuar</button></div></form></dialog>
+    <dialog id="data-settings-modal" class="modal activity-modal"><button class="modal-close" data-close><i data-lucide="x"></i></button><p class="eyebrow">DADOS E PRIVACIDADE</p><h2>Study Coach</h2><form id="coach-settings-form"><label class="check-label"><input name="enabled" type="checkbox" /> Usar análise com IA</label><p class="field-help">O Study Coach usa os dados selecionados para gerar recomendações de estudo.</p><fieldset><legend>Dados compartilhados</legend><label class="check-label"><input name="sendPerformanceData" type="checkbox" /> Dados de desempenho</label><label class="check-label"><input name="sendStudyNotes" type="checkbox" /> Observações pessoais</label><label class="check-label"><input name="sendDetailedHistory" type="checkbox" /> Histórico detalhado</label></fieldset><button class="finish-button full" type="submit">Salvar configurações</button></form><hr /><h2>Backup local</h2><p class="field-help">Seus dados ficam armazenados localmente neste dispositivo. Exporte regularmente para manter um backup.</p><div class="coach-actions"><button type="button" id="export-data">Exportar meus dados</button><button type="button" id="select-import">Importar dados</button><input id="import-data" type="file" accept="application/json" hidden /></div><div id="import-summary" hidden></div></dialog>
+    <div id="toast" role="status"></div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="repositories.js"></script>
+    <script src="student-profile-repository.js"></script>
+    <script src="routine-engine.js"></script>
+    <script src="session-flow.js"></script>
+    <script src="study-analytics.js"></script>
+    <script src="ai-context-builder.js"></script>
+    <script src="ai-response-validator.js"></script>
+    <script src="ai-recommendation-service.js"></script>
+    <script src="ai-coach-client.js"></script>
+    <script src="ai-analysis-cache.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

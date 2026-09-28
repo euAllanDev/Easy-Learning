@@ -1,0 +1,2 @@
+ALTER TABLE "availability_slots" ADD CONSTRAINT "availability_slots_day_check" CHECK ("availability_slots"."day_of_week" between 0 and 6);--> statement-breakpoint
+ALTER TABLE "availability_slots" ADD CONSTRAINT "availability_slots_interval_check" CHECK ("availability_slots"."start_time" ~ '^([01][0-9]|2[0-3]):[0-5][0-9]$' and "availability_slots"."end_time" ~ '^([01][0-9]|2[0-3]):[0-5][0-9]$' and "availability_slots"."start_time" < "availability_slots"."end_time");
